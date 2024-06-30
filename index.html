@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            /* font-family: "Open Sans", sans-serif; */
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        ::-webkit-scrollbar {
+        width: 3px;
+        }
+        ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+        }
+        body {
+            background-color: #f8f8f8;
+        }
+        .main_container {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: start;
+        }
+        .main_container .left_menu_section {
+            width: 15%;
+            background-color: white;
+            border: 1px solid rgb(243, 243, 243);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .main_container .inner_menu_sect {
+            background-color: white;
+            height: 100vh;
+        }
+        .inner_menu_sect .logo {
+            width: 100%;
+            height: 50px;
+        }
+        .inner_menu_sect .exit_icon {
+            color: red;
+            text-align: center;
+            font-weight: bold;
+            transform: rotateY(180deg);
+        }
+        .inner_menu_sect ul {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+        }
+        .inner_menu_sect ul li {
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-radius: 30px;
+            transition: .3s;
+            margin: 10px 0px;
+            color: #777777;
+        }
+        .inner_menu_sect ul li:hover {
+            background-color: black;
+            color: white;
+        }
+        .main_container .aside_section {
+            display: flex;
+            justify-content: space-between;
+        }
+        .main_container .main_content_section {
+            width: calc(85% - 20px);
+            border: 1px solid rgb(243, 243, 243);
+            border-radius: 10px;
+            margin: 10px;
+        }
+        .main_container .main_content_section .main_header {
+            display: flex;
+            align-items: center;
+            align-content: space-between;
+            justify-content: space-between;
+            border-bottom: 2px solid rgb(243, 243, 243);
+            padding: 10px;
+            margin-right: 40px;
+        }
+        .main_container .main_content_section .main_header h1 {
+                font-size: 24px;
+    font-weight: 700;
+        }
+        .main_container .main_content_section .main_header h1 span{
+              color: #E40001;
+    font-size: 24px;
+    font-weight: 700;
+        }
+        .main_content_section .main_content {
+            width: calc(70% - 20px);
+            margin: 10px;
+        }
+        .main_content_section .main_content .flow_container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .main_content_section .main_content .flow_container .box {
+            width: 16.66%;
+            padding: 5px;
+        }
+        .main_content .flow_container .box_inner {
+               border-radius: 22px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    padding: 20px 15px;
+    border: 2px solid rgb(255, 255, 255);
+        }
+        .box_inner .inbox span:nth-child(2) {
+           color: #262626;
+           font-weight: 600;
+           font-family: "Poppins", sans-serif;
+           align-items: center;
+           display: flex;
+        }
+        .box_inner p {
+           color: #777777;
+           font-size: 12px;
+        }
+        .main_content .flow_container .box_inner .inbox {
+            display: flex;
+            gap: 10px;
+        }
+        .main_content .flow_container .box_inner .inbox span:first-child {
+    width: 30px;
+    height: 30px;
+    /* font-size: 20px; */
+    background-color: #FDEBEB;
+    padding: 5px;
+    border-radius: 10px;
+        }
+        .main_content .flow_container .box_inner .inbox  span:nth-child(1) {
+            color: 
+#E40001;
+                font-size: larger;
+        }
+        .side_section {
+            display: flex;
+            width: calc(30% - 20px);
+            flex-direction: column;
+            margin: 10px;
+        }
+        .side_section .box_cont {
+            width: 90%;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: white;
+            border-radius: 20px;
+            margin: 10px 0px;
+            border: 1px solid rgb(236, 236, 236);
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        }
+        .side_section .box_cont .box_inner {
+            display: flex;
+            flex-direction: column;
+        }
+        .comp_header {
+            padding: 10px;
+            background-color: white;
+        }
+        .comp_header span:nth-child(2) {
+            font-size: 14px;
+            border-radius: 30px;
+            padding: 7px 25px;
+            background-color: #f2f2f2;
+        }
+        .menu_listing {
+        display: flex;
+        list-style: none;
+        background-color: #f8f8f8;
+        border-radius: 20px;
+        padding: 7px;
+        justify-content: space-between;
+      }
+      .menu_listing li {
+        padding: 5px;
+        border-radius: 10px;
+        transition: 0.3s;
+      }
+      .menu_listing li a {
+        padding: 9px 19px;
+        border-radius: 20px;
+        transition: 0.3s;
+        text-decoration: none;
+        font-size: 13px;
+        color: #777777;
+      }
+      .menu_listing li a:focus {
+        color: white;
+        background-color: black;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      }
+      .flow_cont {
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+      }
+      .box_inner_cont {
+        background-color: #f8f8f8;
+        border-radius: 5px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        margin: 10px 0px;
+        justify-content: center;
+      }
+      .box_inner_cont p {
+        font-size: 13px;
+        margin: 10px 0px;
+      }
+      .btn_section {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        padding: 10px 10px;
+      }
+      .btn_section span {
+        font-weight: bold;
+        font-size: 13px;
+        color: 
+#E40001;
+        display: block;
+        width: 45%;
+        padding: 7px 0px;
+        text-align: center;
+        border-radius: 20px;
+        background-color: #ffeeec;
+      }
+      .btn_section span:nth-child(2) {
+        background-color: #eaeaea;
+        color: black;
+      }
+      .flow_cont table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      .flow_cont table th {
+        color: #777777;
+        text-align: left;
+        font-size: 14px;
+        padding: 10px 15px;
+        position: sticky;
+      }
+      .flow_cont table tr td {
+        text-align: left;
+        font-size: 14px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        margin: 10px;
+        border-top: 10px solid white;
+        border-bottom: 10px solid white;
+        border-radius: 10px;
+      }
+      .flow_cont table tr td i {
+        color: 
+#E40001;
+      }
+      .profile {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .icons {
+background-color: #FFFFFF;
+ 
+    padding: 7px;
+    border-radius: 24px;
+    font-size: larger;
+      }
+      .profile_img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+      .profile_img img {
+        width: 100%;
+        height: 100%;
+      }
+      .quick_link {
+        display: flex;
+        flex-direction: column;
+      }
+      .quick_link h2 {
+     font-size: 16px;
+    display: flex;
+    font-weight: 400;
+    color: #262626;
+      }
+      .quick_link p {
+        font-size: 13px;
+        color: #e40001;
+      }
+      .chart_container {
+        background-color: white;
+        margin: 13px 0px;
+        border-radius: 20px;
+        padding: 0px 5px;
+        border: 1px solid rgb(254, 254, 254);
+      }
+      .chart_section {
+        height: fit-content;
+        background: #ffffff;
+        border-radius: 15px;
+        margin-bottom: 15px;
+      }
+      .chart_section .thread_bar h5 {
+        display: flex;
+        width: 25%;
+      }
+
+      .chart_section .thread_bar .chart_list {
+        display: flex;
+        list-style: none;
+        background-color: #f7f7f7;
+        padding: 5px;
+        border-radius: 35px;
+      }
+      .chart_section .thread_bar .chart_list li {
+        transition: 0.2s;
+        padding: 5px 16px;
+        color: #777777;
+        font-size: 13px;
+      }
+      .chart_section .thread_bar .chart_list li:hover {
+        background-color: black;
+        color: white;
+        border-radius: 30px;
+        box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+      }
+      .chart_section .thread_bar {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        align-items: center;
+      }
+      .chart_section .thread_bar .chart_list2 {
+        display: flex;
+        list-style: none;
+        background-color: #f7f7f7;
+        padding: 5px;
+        border-radius: 35px;
+      }
+      .chart_section .thread_bar .chart_list2 li {
+        transition: 0.2s;
+        padding: 3px 10px;
+        margin-left: 3px;
+        color: #777777;
+        font-size: 13px;
+      }
+      .chart_section .thread_bar .chart_list2 li:hover {
+        background-color: black;
+        color: white;
+        border-radius: 30px;
+        box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+      }
+      /* chart css */
+      .line_chart {
+        display: flex;
+        align-items: start;
+      }
+      .line_chart .canva_parent {
+        width: 80% !important;
+      }
+        .data {
+        background-color: #ffffff;
+        padding: 15px 25px;
+        text-align: center;
+        border: 5px solid #f8f8f8;
+        border-radius: 14px;
+      }
+      .data p:nth-child(1) {
+        margin-bottom: 20px;
+        font-size: 15px;
+      }
+      .data p:nth-child(2) {
+        font-size: 15px;
+        color: #777777;
+      }
+      .artical_sect {
+        margin-top: 30px;
+        background-color: #f8f8f8;
+        border-radius: 11px;
+      }
+      #line_chart {
+        width: 100% !important;
+        height: auto !important;
+      }
+.arrow{
+  color: #e40001;
+  margin: 35px 0px;
+}
+.m_span{
+  width: 30px;
+    height: 30px;
+    /* font-size: 20px; */
+    background-color: #FDEBEB;
+    padding: 3px;
+    border-radius: 10px;
+}
+      /* responsive css */
+      @media only screen and (max-width: 1024px) {
+        .main_container {
+           width: 100% !important;
+           flex-wrap: wrap;
+        }
+        .main_container .left_menu_section {
+            width: 100% !important;
+            padding: 10px;
+        }
+        .main_content_section {
+            width: 100% !important;
+        }
+        .main_container .inner_menu_sect {
+            height: auto;
+        }
+        .inner_menu_sect ul {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .inner_menu_sect ul li {
+            padding: 10px;
+            font-size: 14px;
+        }
+        .inner_menu_sect ul li span {
+            font-size: 16px;
+        }
+        .flow_container {
+            flex-wrap: wrap;
+        }
+        .flow_container .box {
+            width: 33.33% !important;
+        }
+        .aside_section {
+            flex-wrap: wrap;
+        }
+        .main_content {
+            width: 100% !important;
+        }
+        .side_section {
+            width: 100% !important;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .box_cont {
+            width: 48% !important;
+        }
+    }
+      @media only screen and (max-width: 920px) {
+        .main_container {
+           width: 100% !important;
+           flex-wrap: wrap;
+        }
+        .main_container .left_menu_section {
+            width: 100% !important;
+            padding: 10px;
+        }
+        .main_content_section {
+            width: 100% !important;
+        }
+        .main_container .inner_menu_sect {
+            height: auto;
+        }
+        .inner_menu_sect ul {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .inner_menu_sect ul li {
+            padding: 10px;
+            font-size: 14px;
+        }
+        .inner_menu_sect ul li span {
+            font-size: 16px;
+        }
+        .flow_container {
+            flex-wrap: wrap;
+        }
+        .flow_container .box {
+            width: 33.33% !important;
+        }
+        .aside_section {
+            flex-wrap: wrap;
+        }
+        .main_content {
+            width: 100% !important;
+        }
+        .side_section {
+            width: 100% !important;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .box_cont {
+            width: 48% !important;
+        }
+    }
+        @media only screen and (max-width: 768px) {
+            .flow_container {
+                flex-wrap: wrap;
+            }
+            .flow_container .box {
+                width: 33.33% !important;
+            }
+            .main_container .main_content_section .main_header h1 {
+                font-size: 16px;
+            }
+            .main_container .left_menu_section {
+                padding: 10px;
+            }
+            .profile_img {
+                width: 30px;
+                height: 30px;
+            }
+            .quick_link h2 {
+                font-size: 14px;
+            }
+            .quick_link p {
+                font-size: 12px;
+            }
+            .main_container {
+                width: 100% !important;
+                flex-wrap: wrap;
+            }
+            .left_menu_section {
+                width: 100% !important;
+            }
+            .main_content_section {
+                width: 100% !important;
+            }
+            .main_container .inner_menu_sect {
+                height: auto;
+            }
+            .inner_menu_sect ul {
+                flex-direction: row;
+            }
+            .side_section {
+                width: 100% !important;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            .pie_charts {
+              width: 100%;
+            }
+            .box_cont {
+                width: 100% !important;
+            }
+            .inner_menu_sect ul {
+                justify-content: space-between;
+            }
+            .inner_menu_sect ul li {
+                font-size: 14px;
+                padding: 10px;
+            }
+            .inner_menu_sect ul li span {
+                font-size: 16px;
+            }
+            .logo {
+                display: none;
+            }
+            .chart_container {
+                padding: 0px;
+            }
+            .chart_section .thread_bar .chart_list li {
+                font-size: 14px;
+            }
+            .chart_section .thread_bar .chart_list2 li {
+                font-size: 14px;
+            }
+        }
+        @media only screen and (max-width: 480px) {
+            .flow_container {
+                flex-wrap: wrap;
+            }
+            .main_content_section .main_content {
+              margin: 0px;
+            }
+            .chart_container {
+                padding: 0px;
+                width: 100%;
+                overflow: scroll;
+            }
+            .chart_section {
+                width: 800px;
+            }
+
+            .thread_bar {
+                width: 800px;
+            }
+            .line_chart {
+                width: 800px;
+            }
+            .chart_header {
+              width: 800px;
+            }
+            .pie_chart {
+              width: 800px;
+            }
+            .inner_menu_sect ul li {
+                font-size: 14px;
+                justify-content: center;
+            }
+            .flow_container .box {
+                width: 50% !important;
+            }
+            .main_container .main_content_section .main_header h1 {
+                font-size: 14px;
+            }
+            .profile span {
+                font-size: 16px;
+            }
+            .profile_img {
+                width: 30px;
+                height: 30px;
+            }
+            .quick_link h2 {
+                font-size: 12px;
+            }
+            .quick_link p {
+                font-size: 10px;
+            }
+            .main_container {
+                width: 100% !important;
+                flex-wrap: wrap;
+            }
+            .left_menu_section {
+                width: 100% !important;
+            }
+            .main_content_section {
+                width: 100% !important;
+            }
+            .main_container .inner_menu_sect {
+                height: auto;
+            }
+            .inner_menu_sect ul {
+                flex-direction: column;
+            }
+            .side_section {
+                width: 100% !important;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            .box_cont {
+                width: 100% !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main_container">
+        <div class="left_menu_section">
+            <div class="inner_menu_sect">
+                <ul class="nav_list">
+                    <div class="logo">
+                        <img src="image/TOUFIC-FF_logo 1.png" alt="">
+                    </div>
+                    <div class="exit_icon">
+                        <span class="material-symbols-outlined arrow"> start </span>
+                    </div>
+                    <li><span class="material-symbols-outlined"> home </span> Home</li>
+                    <li>
+                      <span class="material-symbols-outlined">library_books</span>
+                      Library
+                    </li>
+                    <li>
+                      <span class="material-symbols-outlined">
+                        flip_camera_android
+                      </span>
+                      Listing
+                    </li>
+                    <li>
+                      <span class="material-symbols-outlined"> contacts </span>Contacts
+                    </li>
+                    <li>
+                      <span class="material-symbols-outlined"> leaderboard </span>Leads
+                    </li>
+                    <li>
+                      <span class="material-symbols-outlined"> handshake </span>Deals
+                    </li>
+                    <li>
+                      <span class="material-symbols-outlined"> local_activity </span
+                      >Activities
+                    </li>
+                  </ul>
+            </div>
+        </div>
+        <div class="main_content_section">
+            <div class="main_header">
+                <h1>Hi there, <span style="color: 
+#E40001;   
+    font-size: 24px;
+    font-weight: 700;">Alice</span></h1>
+                <div class="profile">
+                    <span class="material-symbols-outlined icons">support</span>
+                    <span class="material-symbols-outlined icons">notifications</span>
+                    <div class="profile_img">
+                        <img src="image/Ellipse 13.png" alt="">
+                    </div>
+                    <div class="quick_link">
+                        <h2>Alice <span class="material-symbols-outlined">
+keyboard_arrow_down
+</span></h2>
+                        
+                        <p>User</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="aside_section">
+                <div class="main_content">
+                    <div class="flow_container">
+                        <div class="box">
+                            <div class="box_inner">
+                                <div class="inbox">
+                                    
+                                    <span class="material-symbols-outlined m_span">grid_view</span>
+                                    <span>123</span>
+                                </div>
+                                <p>New Leads</p>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="box_inner">
+                                <div class="inbox">
+                                    <span class="material-symbols-outlined m_span">
+                                        new_window
+                                      </span>
+                                    <span>51</span>
+                                </div>
+                                <p>Qualified Leads</p>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="box_inner">
+                                <div class="inbox">
+                                    <span class="material-symbols-outlined m_span">
+                                        chair
+                                      </span>
+                                    <span>25</span>
+                                </div>
+                                <p>Meeting/Viewing</p>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="box_inner">
+                                <div class="inbox">
+                                    <span class="material-symbols-outlined m_span">
+                                        comment
+                                      </span>
+                                    <span>99</span>
+                                </div>
+                                <p>Offered</p>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="box_inner">
+                                <div class="inbox">
+                                    <span class="material-symbols-outlined m_span">
+                                        picture_in_picture_center
+                                      </span>
+                                    <span>87</span>
+                                </div>
+                                <p>Future Prospect</p>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="box_inner">
+                                <div class="inbox">
+                                    <span class="material-symbols-outlined m_span">
+                                        capture
+                                      </span>
+                                    <span>0</span>
+                                </div>
+                                <p>Lost</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart_container">
+                        <div class="chart_section">
+                            <div class="thread_bar">
+                                <h5>MTD/YTD Comparation</h5>
+                                <ul class="chart_list">
+                                  <li>Revenue</li>
+                                  <li>Listing</li>
+                                  <li>Calls</li>
+                                  <li>Offers</li>
+                                  <li>Leads</li>
+                                </ul>
+                                <ul class="chart_list2">
+                                  <li>YTD</li>
+                                  <li>MTD</li>
+                                </ul>
+                              </div>
+                        </div>
+                          <div class="line_chart">
+                            <div class="canva_parent">
+                              <canvas id="line_chart"></canvas>
+                            </div>
+                            <div class="artical_sect">
+                              <div class="data">
+                                <p>12345.123</p>
+                                <p>YTD</p>
+                              </div>
+                              <div class="data">
+                                <p>0.0</p>
+                                <p>MTD</p>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                      <div class="chart_container">
+                        <div class="chart_section">
+                            <div class="thread_bar"  style="justify-content: start;">
+                              <div style="width: 43%;">
+                                <h4>Calender</h4>
+                              </div>
+                                <div style="gap: 10px; display:flex;justify-content: space-between;align-items: center;">
+                                  <ul class="chart_list" style=" justify-content: space-between;">
+                                  <li>Month</li>
+                                  <li>Week</li>
+                                  <li>Day</li>
+                                </ul>
+                                <ul class="chart_list" style=" justify-content: space-between;">
+                                  <li>Today</li>
+                                </ul>
+                                <ul class="chart_list" style=" justify-content: space-between;">
+                                  <li style="padding: 1px 3px;"><span class="material-symbols-outlined">
+chevron_left
+</span></li>
+                                </ul>
+                                <p style="padding: 0px 10px; color: #777777;font-size: 12px;">May 2024</p>
+                                <ul class="chart_list" style=" justify-content: space-between;">
+                                  <li style="padding: 1px 3px;"><span class="material-symbols-outlined">
+chevron_right
+</span></li>
+                                </ul>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="chart_container">
+                        <div class="bar_chart_section">
+                            <div class="chart_bgc">
+                              <div class="pie_charts">
+                                <div class="chart_header">
+                                    <div class="comp_header" style="display: flex;justify-content: space-between;">
+                                        <h4>Agent KPI Summary</h4>
+                                        <div style="display: flex;
+                                        gap: 10px; align-items: center;">
+                                            <span>Date</span>
+                                            <span>All</span>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="pie_chart">
+                                  <canvas
+                                    id="myPieChart"
+                                    style="
+                                      display: block;
+                                      box-sizing: border-box;
+                                      width: 830px !important;
+                                    "
+                                  ></canvas>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                <div class="side_section">
+                    <div class="box_cont">
+                      <div class="box_inner">
+                        <div class="comp_header">
+                          <h2>Reminders</h2>
+                        </div>
+                        <ul class="menu_listing">
+                          <li>
+                            <a href="#">Pending</a>
+                          </li>
+                          <li>
+                            <a href="#">Upcoming</a>
+                          </li>
+                          <li>
+                            <a href="#">Complete</a>
+                          </li>
+                        </ul>
+                        <div class="flow_cont">
+                          <div class="box_inner_cont">
+                            <p>Lorem ipsum dolor sit amet</p>
+                            <div class="btn_section">
+                              <span>Due Today</span>
+                              <span class="span_two">Listing</span>
+                            </div>
+                          </div>
+                          <div class="box_inner_cont">
+                            <p>Lorem ipsum dolor sit amet</p>
+                            <div class="btn_section">
+                              <span>Due Today</span>
+                              <span class="span_two">Listing</span>
+                            </div>
+                          </div>
+                          <div class="box_inner_cont">
+                            <p>Lorem ipsum dolor sit amet</p>
+                            <div class="btn_section">
+                              <span>Due Today</span>
+                              <span class="span_two">Listing</span>
+                            </div>
+                          </div>
+                          <div class="box_inner_cont">
+                            <p>Lorem ipsum dolor sit amet</p>
+                            <div class="btn_section">
+                              <span>Due Today</span>
+                              <span class="span_two">Listing</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+    
+
+                     
+                    <div class="box_cont">
+                        <div class="box_inner">
+                            <div class="comp_header" style="display: flex;justify-content: space-between;">
+                                <h2>New Leads</h2>
+                                <span>See All</span>
+                              </div>
+                          <div class="flow_cont">
+                            <table>
+                              <thead>
+                                <th>Lead Ref#</th>
+                                <th>Name</th>
+                             <th>View</th>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>1236</td>
+                                  <td>John Doe</td>
+                                  <td><span class="material-symbols-outlined arrow">
+arrow_forward
+</span></td>
+                                </tr>
+                                <tr>
+                                  <td>1236</td>
+                                  <td>John Doe</td>
+                                  <td><span class="material-symbols-outlined arrow">
+arrow_forward
+</span></td>
+                                </tr>
+                                <tr>
+                                  <td>1236</td>
+                                  <td>John Doe</td>
+                                  <td><span class="material-symbols-outlined arrow">
+arrow_forward
+</span></td>
+                                </tr>
+                                <tr>
+                                  <td>1236</td>
+                                  <td>John Doe</td>
+                                  <td><span class="material-symbols-outlined arrow">
+arrow_forward
+</span></td>
+                                </tr>
+                                <tr>
+                                  <td>1236</td>
+                                  <td>John Doe</td>
+                                  <td><span class="material-symbols-outlined arrow">
+arrow_forward
+</span></td>
+                                </tr>
+                                <tr>
+                                  <td>1236</td>
+                                  <td>0</td>
+                                  <td><span class="material-symbols-outlined arrow">
+arrow_forward
+</span></td>
+                                </tr>
+                                <tr>
+                                  <td>1236</td>
+                                  <td>John Doe</td>
+                                  <td><span class="material-symbols-outlined arrow">
+arrow_forward
+</span></td>
+                                </tr>
+                                <tr>
+                                  <td>1236</td>
+                                  <td>John Doe</td>
+                                  <td><span class="material-symbols-outlined arrow">
+arrow_forward
+</span></td>
+                                </tr>
+                                <tr>
+                                  <td>1236</td>
+                                  <td>John Doe</td>
+                                  <td><span class="material-symbols-outlined arrow">
+arrow_forward
+</span></td>
+                                </tr>
+                                <tr>
+                                  <td>1236</td>
+                                  <td>John Doe</td>
+                                  <td><span class="material-symbols-outlined arrow">
+arrow_forward
+</span></td>
+                                </tr>
+                                <tr>
+                                  <td>1236</td>
+                                  <td>John Doe</td>
+                                  <td><span class="material-symbols-outlined arrow">
+arrow_forward
+</span></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="box_cont">
+                        <div class="box_inner">
+                          <div class="comp_header" style="display: flex;justify-content: space-between;">
+                            <h2>KPI</h2>
+                            <span>See All</span>
+                          </div>
+                          <div class="flow_cont">
+                            <table>
+                              <thead>
+                                <th>TITLE</th>
+                                <th>TARGET</th>
+                                <th>ARCHIVED</th>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>Revenue</td>
+                                  <td>0</td>
+                                  <td>0</td>
+                                </tr>
+                                <tr>
+                                  <td>Revenue</td>
+                                  <td>0</td>
+                                  <td>0</td>
+                                </tr>
+                                <tr>
+                                  <td>Revenue</td>
+                                  <td>0</td>
+                                  <td>0</td>
+                                </tr>
+                                <tr>
+                                  <td>Revenue</td>
+                                  <td>0</td>
+                                  <td>0</td>
+                                </tr>
+                                <tr>
+                                  <td>Revenue</td>
+                                  <td>0</td>
+                                  <td>0</td>
+                                </tr>
+                                <tr>
+                                  <td>Revenue</td>
+                                  <td>0</td>
+                                  <td>0</td>
+                                </tr>
+                                <tr>
+                                  <td>Revenue</td>
+                                  <td>0</td>
+                                  <td>0</td>
+                                </tr>
+                                <tr>
+                                  <td>Revenue</td>
+                                  <td>0</td>
+                                  <td>0</td>
+                                </tr>
+                                <tr>
+                                  <td>Revenue</td>
+                                  <td>0</td>
+                                  <td>0</td>
+                                </tr>
+                                <tr>
+                                  <td>Revenue</td>
+                                  <td>0</td>
+                                  <td>0</td>
+                                </tr>
+                                <tr>
+                                  <td>Revenue</td>
+                                  <td>0</td>
+                                  <td>0</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div>
+    </div>
+    <script>
+      var data = {
+        labels: [
+          "jan",
+          "feb",
+          "march",
+          "apr",
+          "may",
+          "jun",
+          "jul",
+          "aug",
+          "sep",
+          "oct",
+          "nov",
+          "dec",
+        ],
+        datasets: [
+          {
+            data: [9, 16, 22, 25, 28],
+            backgroundColor: ["#F75D5F"],
+            hoverOffset: 20,
+          },
+        ],
+      };
+      var ctx = document.getElementById("line_chart").getContext("2d");
+      var myPieChart = new Chart(ctx, {
+        type: "line",
+        data: data,
+      });
+
+      var data = {
+        labels: [
+          "jan",
+          "feb",
+          "march",
+          "apr",
+          "may",
+          "jun",
+          "jul",
+          "aug",
+          "sep",
+          "oct",
+          "nov",
+          "dec",
+        ],
+        datasets: [
+          {
+            data: [9, 16, 22, 25, 28, 24, 42, 1, 22, 10, 8, 9],
+            backgroundColor: [
+              "#F75D5F",
+              "#F75D5F",
+              "#F75D5F",
+              "#F75D5F",
+              "#F75D5F",
+            ],
+            hoverOffset: 20,
+            barThickness: 20,
+          },
+        ],
+      };
+      var ctx = document.getElementById("myPieChart").getContext("2d");
+      var myPieChart = new Chart(ctx, {
+        type: "bar",
+        data: data,
+      });
+    </script>
+</body>
+
+</html>
